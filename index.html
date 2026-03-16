@@ -75,26 +75,22 @@
       }
 
       .timer {
-        background: #0f172a;
-        color: #f8fafc;
-        border-radius: 16px;
-        padding: clamp(12px, 2.5vh, 16px);
+        background: #e1e1e1;
+        border-radius: 4px;
+        padding: clamp(18px, 3vh, 28px) 12px;
         text-align: center;
       }
 
       .timer-label {
-        margin: 0 0 6px;
-        font-size: 0.82rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        opacity: 0.8;
+        display: none;
       }
 
       #countdown {
         margin: 0;
-        font-size: clamp(1.75rem, 9vw, 2.4rem);
+        font-size: clamp(1.95rem, 8vw, 2.7rem);
         font-weight: 700;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.02em;
+        color: #e0061b;
       }
 
       ul {
@@ -154,7 +150,7 @@
       const updateCountdown = () => {
         const minutes = String(Math.floor(remainingSeconds / 60)).padStart(2, "0");
         const seconds = String(remainingSeconds % 60).padStart(2, "0");
-        countdownElement.textContent = `${minutes}:${seconds}`;
+        countdownElement.textContent = `${minutes} minute and ${seconds} seconds`;
 
         if (remainingSeconds > 0) {
           remainingSeconds -= 1;
