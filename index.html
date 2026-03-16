@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Мобильный лендинг</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100svh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(180deg, #f5f8ff 0%, #ffffff 100%);
+        color: #0f172a;
+      }
+
+      .screen {
+        width: min(100vw, 430px);
+        height: 100svh;
+        padding: clamp(16px, 4vw, 24px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: clamp(10px, 2vh, 16px);
+      }
+
+      .hero {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 7vw, 2rem);
+        line-height: 1.15;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        flex: 1;
+      }
+
+      .hero img {
+        width: clamp(56px, 16vw, 72px);
+        height: clamp(56px, 16vw, 72px);
+        border-radius: 18px;
+        object-fit: cover;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+        flex-shrink: 0;
+      }
+
+      p {
+        margin: 0;
+        font-size: clamp(0.94rem, 3.6vw, 1.02rem);
+        line-height: 1.45;
+        color: #334155;
+      }
+
+      .timer {
+        background: #0f172a;
+        color: #f8fafc;
+        border-radius: 16px;
+        padding: clamp(12px, 2.5vh, 16px);
+        text-align: center;
+      }
+
+      .timer-label {
+        margin: 0 0 6px;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.8;
+      }
+
+      #countdown {
+        margin: 0;
+        font-size: clamp(1.75rem, 9vw, 2.4rem);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 1.2rem;
+        display: grid;
+        gap: 8px;
+        font-size: clamp(0.95rem, 3.7vw, 1.05rem);
+        color: #0f172a;
+      }
+
+      button {
+        border: 0;
+        border-radius: 14px;
+        width: 100%;
+        padding: 14px 16px;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #ffffff;
+        background: #2563eb;
+        box-shadow: 0 12px 20px rgba(37, 99, 235, 0.25);
+      }
+
+      button:active {
+        transform: translateY(1px);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="screen">
+      <section class="hero">
+        <h1>Успей получить скидку на новый курс</h1>
+        <img src="https://example.com/app-icon.png" alt="Иконка оффера" />
+      </section>
+
+      <p>
+        Только сегодня мы открыли ранний доступ: запустите таймер, пройдите два шага и
+        заберите бонус до завершения обратного отсчета.
+      </p>
+
+      <section class="timer" aria-live="polite">
+        <p class="timer-label">До конца предложения</p>
+        <p id="countdown">05:00</p>
+      </section>
+
+      <ul>
+        <li>step1</li>
+        <li>step2</li>
+      </ul>
+
+      <button type="button">Получить предложение</button>
+    </main>
+
+    <script>
+      const countdownElement = document.getElementById("countdown");
+      let remainingSeconds = 5 * 60;
+
+      const updateCountdown = () => {
+        const minutes = String(Math.floor(remainingSeconds / 60)).padStart(2, "0");
+        const seconds = String(remainingSeconds % 60).padStart(2, "0");
+        countdownElement.textContent = `${minutes}:${seconds}`;
+
+        if (remainingSeconds > 0) {
+          remainingSeconds -= 1;
+        }
+      };
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
